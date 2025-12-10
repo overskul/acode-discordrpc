@@ -1,0 +1,40 @@
+name: Sync Discord Icons
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sync-icons:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync icons from Discord
+        env:
+          DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+          DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
+          DISCORD_APP_ID: ${{ secrets.DISCORD_APP_ID }}
+        run: python scripts/sync_icons.py
+
+      - name: Commit changes
+        run: |
+          if git status --porcelain | grep Icons.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add src/Icons.json
+            git commit -m "chore: sync Discord icons"
+            git push
+          else
+            echo "No changes to commit"
+          fi
