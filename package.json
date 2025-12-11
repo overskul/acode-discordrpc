@@ -1,10 +1,11 @@
 {
   "type": "module",
-  "author": "USER_NAME",
+  "author": "overskul",
   "license": "MIT",
   "dependencies": {
     "@types/ace": "^0.0.50",
-    "html-tag-js": "^1.1.41"
+    "html-tag-js": "^1.1.41",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
     "archiver": "^7.0.1",
