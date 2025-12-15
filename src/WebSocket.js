@@ -30,7 +30,7 @@ export class RPCWebSocket {
   }
 
   #connect() {
-    if (this.#ws && (this.#ws.readyState === WebSocket.CONNECTING || this.#ws.readyState === WebSocket.OPEN)) {
+    if (this.#ws && this.#ws.readyState !== WebSocket.CLOSED && this.#ws.readyState !== WebSocket.CLOSING) {
       console.log("[D-RPC] • Connection already exists");
       return;
     }

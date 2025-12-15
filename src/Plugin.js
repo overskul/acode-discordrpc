@@ -14,7 +14,8 @@ export class DiscordRichPresence {
     if (!appSettings.value[this.#plugin.id]) {
       appSettings.value[this.#plugin.id] = {
         presence: {
-          isAFK: false
+          isAFK: false,
+          application: "1221582237603201144"
         },
         config: {
           token: null,
@@ -83,6 +84,18 @@ export class DiscordRichPresence {
           text: "Is AFK",
           checkbox: this.settings.presence.isAFK
         },
+        {
+          key: "application",
+          text: "Discord Application",
+          info: "An Application ID for showing icons",
+          value: this.settings.presence.application,
+          prompt: "Enter your application id",
+          promptType: "text",
+          promptOptions: {
+            required: true,
+            placeholder: "1221582237603201144"
+          }
+        },
         // config
         {
           key: "token",
@@ -92,8 +105,7 @@ export class DiscordRichPresence {
           promptType: "text",
           promptOptions: {
             required: true,
-            placeholder: "MTIyMTU4MjIzNzYwMzIwMTE0NA...",
-            match: /[\w-]{24}\.[\w-]{6}\.[\w-]{27}/g
+            placeholder: "MTIyMTU4MjIzNzYwMzIwMTE0NA..."
           }
         },
         {
@@ -132,8 +144,7 @@ export class DiscordRichPresence {
         // utility 
         {
           key: "connection_status",
-          text: "Connection Status",
-          value: this.ws.isConnected ? "✓ Connected" : "× Disconnected",
+          text: `Connection Status: ${this.ws.isConnected ? "✓ Connected" : "× Disconnected"}`
         },
         {
           key: "reconnect",
@@ -144,7 +155,10 @@ export class DiscordRichPresence {
         switch(key) {
           // presence
           case 'is_afk':
-            this.settings.presence.isAFk = !this.settings.presence.isAFk;
+            this.settings.presence.isAFK = !this.settings.presence.isAFK;
+            break;
+          case 'application':
+            this.settings.presence.application = value || "1221582237603201144";
             break;
 
           // config

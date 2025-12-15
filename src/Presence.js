@@ -3,8 +3,6 @@ import Icons from "./Icons.json";
 const fs = acode.require('fs');
 const Url = acode.require('url');
 
-const APPLICATION_ID = "1221582237603201144";
-
 export class Presence {
   constructor(rpc) {
     this.rpc = rpc;
@@ -19,13 +17,13 @@ export class Presence {
       activities: [{
         name: BuildInfo.displayName,
         type: 0,
-        application_id: APPLICATION_ID,
+        application_id: this.settings.presence.application,
         state: this.state,
         details: this.details,
         assets: {
           large_image: Icons["acode"],
           large_text: "Acode Editor",
-          small_image: Icons[this.currentLanguage],
+          small_image: Icons[this.currentLanguage] || Icons["acode"],
           small_text: this.currentLanguage
         }
       }]
@@ -38,7 +36,7 @@ export class Presence {
 
   get status() {
     if (
-      this.settings.forceOffline && 
+      this.settings.config.forceOffline && 
       this.rpc.ws.status === "offline"
     )
       return "online";
@@ -87,7 +85,7 @@ export class Presence {
   get currentLanguage() {
     const { activeFile } = editorManager;
     if (!activeFile.session) return;
-    return activeFile.session?.$mode?.$id?.split("/")?.pop();
+    return activeFile.session?.$mode?.$id?.split("/")?.pop() || "text";
   }
 
   // async getRepositoryButton() {
