@@ -59,8 +59,10 @@ export class DiscordRichPresence {
 
     this.ws.close(true);
 
-    delete appSettings.value[this.#plugin.id];
-    appSettings.update(false);
+    if (!appSettings.value.pluginsDisabled[this.#plugin.id]) {
+      delete appSettings.value[this.#plugin.id];
+      appSettings.update(false);
+    }
   }
 
   async updatePresence() {
@@ -143,10 +145,6 @@ export class DiscordRichPresence {
         // },
         // utility 
         {
-          key: "connection_status",
-          text: `Connection Status: ${this.ws.isConnected ? "✓ Connected" : "× Disconnected"}`
-        },
-        {
           key: "reconnect",
           text: "Reconnect",
         }
@@ -186,9 +184,6 @@ export class DiscordRichPresence {
           //   break;
 
           // utility 
-          case 'connection_status':
-            // nothing to do
-            break;
           case 'reconnect':
             this.ws.reconnect();
             break;
