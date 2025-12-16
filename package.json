@@ -12,7 +12,8 @@
     "esbuild": "^0.24.0"
   },
   "scripts": {
+    "syncIcons": "python3 scripts/sync_icons.py",
     "dev": "node esbuild.config.js --serve",
-    "build": "node esbuild.config.js"
+    "build": "npm run syncIcons && node esbuild.config.js"
   }
 }
