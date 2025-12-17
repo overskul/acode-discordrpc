@@ -1,4 +1,5 @@
 import Icons from "./Icons.json";
+import { APPLICATION_ID } from "./Plugin.js";
 
 const fs = acode.require('fs');
 const Url = acode.require('url');
@@ -17,7 +18,7 @@ export class Presence {
       activities: [{
         name: BuildInfo.displayName,
         type: 0,
-        application_id: this.settings.presence.application,
+        application_id: APPLICATION_ID,
         state: this.state,
         details: this.details,
         assets: {

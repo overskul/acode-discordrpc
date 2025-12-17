@@ -2,20 +2,21 @@ import { RPCWebSocket } from "./WebSocket.js";
 import { Presence } from "./Presence.js";
 
 const appSettings = acode.require("settings");
+export const APPLICATION_ID = "1221582237603201144";
 
 export class DiscordRichPresence {
   #plugin;
   #lastUpdate = 0;
   #updatePresence;
   static UPDATE_EVENTS = ["switch-file", "save-file"];
+  
 
   constructor(plugin) {
     this.#plugin = plugin;
     if (!appSettings.value[this.#plugin.id]) {
       appSettings.value[this.#plugin.id] = {
         presence: {
-          isAFK: false,
-          application: "1221582237603201144"
+          isAFK: false
         },
         config: {
           token: null,
@@ -86,18 +87,6 @@ export class DiscordRichPresence {
           text: "Is AFK",
           checkbox: this.settings.presence.isAFK
         },
-        {
-          key: "application",
-          text: "Discord Application",
-          info: "An Application ID for showing icons",
-          value: this.settings.presence.application,
-          prompt: "Enter your application id",
-          promptType: "text",
-          promptOptions: {
-            required: true,
-            placeholder: "1221582237603201144"
-          }
-        },
         // config
         {
           key: "token",
@@ -154,9 +143,6 @@ export class DiscordRichPresence {
           // presence
           case 'is_afk':
             this.settings.presence.isAFK = !this.settings.presence.isAFK;
-            break;
-          case 'application':
-            this.settings.presence.application = value || "1221582237603201144";
             break;
 
           // config

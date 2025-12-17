@@ -72,7 +72,6 @@ Display what you're working on, which file you're editing, and your current work
 - 🌙 **AFK Mode** - Toggle AFK status manually
 - 🔌 **Auto-reconnection** - Automatically reconnects if connection drops (max 10 attempts)
 - ⚙️ **Highly Configurable** - Customize what information you want to share
-- 🎯 **Custom Application** - Use your own Discord application for custom icons
 - 📱 **Mobile Support** - Works seamlessly on Android devices
 
 ## 📥 Installation
@@ -81,7 +80,6 @@ Display what you're working on, which file you're editing, and your current work
 
 - ✅ Acode Editor (version **958** or higher)
 - ⚠️ Discord account token *(see security warnings above)*
-- ⚠️ Discord Application ID *(optional - for custom icons)*
 
 ### From Acode Plugin Store (Recommended)
 
@@ -117,7 +115,6 @@ Access settings via: **Acode Settings** → **Plugins** → **Discord Rich Prese
 | Setting | Type | Description | Default |
 |---------|------|-------------|---------|
 | **Discord Account Token** | `text` | Your Discord user account token (⚠️ **REQUIRED**) | `null` |
-| **Discord Application** | `text` | Discord Application ID for custom icons | `1221582237603201144` |
 | **Is AFK** | `checkbox` | Mark yourself as away from keyboard | `false` |
 | **Force Offline** | `checkbox` | Force online status when Discord shows offline | `false` |
 | **Show Project Name** | `checkbox` | Display workspace/project name in details | `true` |
@@ -130,12 +127,6 @@ Access settings via: **Acode Settings** → **Plugins** → **Discord Rich Prese
 - **Required** to connect to Discord Gateway
 - ⚠️ Stored in **plain text** in Acode settings
 - ⚠️ See [Security Warnings](#-critical-security-warnings)
-
-#### Discord Application
-- Optional custom Application ID for personalized icons
-- Must be **17-19 digit** Discord snowflake ID
-- Default uses developer's application with Acode icons
-- Create your own at [Discord Developer Portal](https://discord.com/developers/applications)
 
 #### Privacy Controls
 
