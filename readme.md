@@ -2,7 +2,7 @@
 
 # 🎮 Discord Rich Presence for Acode
 
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/overskul/acode-discordrpc)
+[![Version](https://img.shields.io/badge/version-0.0.2-blue.svg)](https://github.com/overskul/acode-discordrpc)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Acode](https://img.shields.io/badge/Acode-%3E%3D958-orange.svg)](https://acode.app)
 [![Discord](https://img.shields.io/badge/Discord-Integration-5865F2.svg?logo=discord&logoColor=white)](https://discord.com)
